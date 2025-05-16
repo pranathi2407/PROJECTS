@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swastha login page</title>
+    <link rel="stylesheet" type="text/css" href="1234532.css">
+    <style>body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      margin: 0;
+      padding: 0;
+      
+      
+    }
+    
+    .signup{
+      margin-right: 200px;
+    
+    }
+    
+    .signup a{
+      color: #0056b3;
+    }
+    .forgot{
+      margin-top: 0;
+      margin-bottom: 40px;
+      margin-left: 150px;
+    }
+    .forgot a {
+      color: #0056b3;
+      
+    }
+    
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    
+    
+    .background-image{
+        background-image: url("medical.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        
+        height: 100vh;  
+    
+    
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    
+    .login-box {
+      max-width: 400px;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #007bff;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      font-weight: bold;
+    }
+    
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    
+    button[type="submit"] {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #239f85;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+    </style>
+
+</head>
+<body>
+
+  <div class="background-image">
+
+  <div class="container">
+    <div class="login-box">
+      <h1>Login</h1>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn">LOGIN!</button>
+        <br>
+        <div class="signup">
+        <a href="C:\Users/prana/AppData/Local/Temp/0e8b50a5-52f6-4b90-bfe9-cf899fc9feaa_swastha website.zip.eaa/swastha website/signup.html">signup!</a>
+        </div>
+        <div class="forgot">
+          <a href="C:\Users/prana/AppData/Local/Temp/00a6322b-75a3-4460-8e6e-fe9e01d5a0ff_swastha website.zip.0ff/swastha website/forgot.html">Forgot password</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+  
+  <script>
+              document.getElementById("loginForm").addEventListener("submit", function(event) {
+          event.preventDefault();
+          
+          var email = document.getElementById("email").value;
+          var password = document.getElementById("password").value;
+          
+          // Perform login authentication
+          if (email === "admin@gmail.com" && password === "admin123") {
+            alert("Login Successful");
+            window.location.assign("website123.html");
+          } else {
+            alert("Invalid Information");
+          }
+        });
+            
+          
+
+          
+  </script>
+
+
+</body>
+</html>
