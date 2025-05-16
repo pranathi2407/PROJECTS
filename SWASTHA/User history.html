@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+  <title>User Treatment History</title>
+  <style>
+    /* CSS styles for the treatment history */
+    #user-treatment-history {
+      list-style-type: none;
+      margin-left: 200px;
+    }
+    body {
+  background-image: url("history.jpg");
+  background-size: cover;
+  background-position: center;
+  font-family: Arial;
+}
+
+    .treatment-item {
+      margin-bottom: 20px;
+    }
+    .headding{
+        background-color: #239f85;
+        width: 400px;
+        color: rgb(0, 0, 0);
+        height: 80px;
+        padding-top: 2px;
+        justify-content: center ;
+        padding-left: 25px;
+        border-radius: 50px;
+        margin-left: 550px;
+
+        
+    }
+    #user-treatment-history{
+      margin-left: 0;
+      background-color: #8bc7f8;
+      width: 500px;
+      border-radius: 20px;
+      height: 600px;
+      padding-top: 40px;
+    }
+    #example{
+      background-repeat: no-repeat;
+      object-fit: cover;
+      width: 600px;
+      height: 300px;
+      border-radius: 5px; 
+      margin-left: 100px;
+      margin-bottom: 30px;
+
+    }
+  
+    h2 {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="headding">  
+  <h1>User's Treatment History</h1>
+  <br>
+  <br>
+  <br>
+  <img src="example.jpg" id="example">
+  <img src="example2.jpg" id="example">
+  
+  </div>
+  
+
+  <ul id="user-treatment-history">
+   
+    <!-- The user's treatment history items will be dynamically added here -->
+  </ul>
+
+
+  <script>
+    // Sample treatment history data for a user
+    var userTreatmentHistory = [
+      {
+        date: "2021-06-01",
+        diagnosis: "Headache",
+        medication: "Ibuprofen"
+      },
+      {
+        date: "2021-07-10",
+        diagnosis: "Common cold",
+        medication: "Over-the-counter cold medicine"
+      },
+      {
+        date: "2021-09-05",
+        diagnosis: "Sprained ankle",
+        medication: "Painkillers and ankle brace"
+      },
+      {
+        date: "2021-10-15",
+        diagnosis: "Sinus infection",
+        medication: "Antibiotics"
+      },
+      {
+        date: "2022-01-03",
+        diagnosis: "Stomach flu",
+        medication: "Oral rehydration solution"
+      }
+    ];
+
+    // Function to display the user's treatment history on the web page
+    function displayUserTreatmentHistory() {
+      var treatmentList = document.getElementById("user-treatment-history");
+
+      // Clear any existing content
+      treatmentList.innerHTML = "";
+
+      // Loop through the user's treatment history data and create list items for each record
+      for (var i = 0; i < userTreatmentHistory.length; i++) {
+        var treatment = userTreatmentHistory[i];
+
+        // Create the HTML elements for date, diagnosis, medication, and container
+        var dateElement = document.createElement("h2");
+        dateElement.textContent = "Date: " + treatment.date;
+
+        var diagnosisElement = document.createElement("p");
+        diagnosisElement.textContent = "Diagnosis: " + treatment.diagnosis;
+
+        var medicationElement = document.createElement("p");
+        medicationElement.textContent = "Medication: " + treatment.medication;
+
+        var treatmentItem = document.createElement("li");
+        treatmentItem.classList.add("treatment-item");
+
+        // Append the elements to the treatment item
+        treatmentItem.appendChild(dateElement);
+        treatmentItem.appendChild(diagnosisElement);
+        treatmentItem.appendChild(medicationElement);
+
+        // Append the treatment item to the treatment list
+        treatmentList.appendChild(treatmentItem);
+      }
+    }
+
+    // Call the displayUserTreatmentHistory function to display the user's treatment history on page load
+    window.onload = function() {
+      displayUserTreatmentHistory();
+    };
+  </script>
+</body>
+</html>
