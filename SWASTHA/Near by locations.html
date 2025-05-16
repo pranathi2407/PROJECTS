@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Near by Hospitals</title>
+  
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+body {
+  background-image: url("grey.jpg");
+  background-size: cover;
+  background-position: center;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+}
+
+#hospital-list {
+  margin-top: 20px;
+}
+
+.hospital-item {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+}
+
+.hospital-item h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.hospital-item p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.hospital-item .address {
+  color: #888;
+  font-size: 12px;
+}
+
+.border{
+  background-color: #239f85;
+  height: 40px;
+  padding-top: 20px;
+  margin: 0;
+  padding: 0;
+  width: 20%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+position: relative;
+margin-left: 580px;
+border-radius: 2rem;
+
+}
+
+
+
+*{
+  margin: 0;
+  padding: 0;
+}
+  </style>
+</head>
+<body>
+  <div class="border">
+  <h1>Near by Hospitals</h1>
+  </div>
+  <div id="hospital-list">
+    <!-- The hospital addresses will be dynamically added here -->
+  </div>
+
+  
+  <script > // Array of sample hospital names
+    var hospitalNames = [
+        "ABC Hospital",
+        "XYZ Medical Center",
+        "City General Hospital",
+        "Healthcare Clinic",
+        "Community Medical Center",
+        "Central Hospital",
+        "Unity Health Services",
+        "Sunrise Medical Center",
+        "Metropolitan Hospital",
+        "Hope Medical Facility"
+      ];
+      
+      // Function to generate a random address
+      function generateRandomAddress() {
+        var streetNames = [
+          "Main Street",
+          "First Avenue",
+          "Elm Street",
+          "Oak Avenue",
+          "Cedar Lane",
+          "Pine Street",
+          "Maple Avenue",
+          "Park Boulevard",
+          "Broadway",
+          "Washington Street"
+        ];
+      
+        var cityNames = [
+          "New York",
+          "Los Angeles",
+          "Chicago",
+          "Houston",
+          "Phoenix",
+          "Philadelphia",
+          "San Antonio",
+          "San Diego",
+          "Dallas",
+          "San Jose"
+        ];
+      
+        var randomStreetIndex = Math.floor(Math.random() * streetNames.length);
+        var randomCityIndex = Math.floor(Math.random() * cityNames.length);
+        var randomStreetNumber = Math.floor(Math.random() * 100) + 1;
+      
+        return randomStreetNumber + " " + streetNames[randomStreetIndex] + ", " + cityNames[randomCityIndex];
+      }
+      
+      // Function to generate a random list of hospitals with addresses
+      function generateRandomHospitalList() {
+        var hospitals = [];
+      
+        for (var i = 0; i < 10; i++) {
+          var randomNameIndex = Math.floor(Math.random() * hospitalNames.length);
+          var randomAddress = generateRandomAddress();
+      
+          var hospital = {
+            name: hospitalNames[randomNameIndex],
+            address: randomAddress,
+          };
+      
+          hospitals.push(hospital);
+        }
+      
+        return hospitals;
+      }
+      
+      // Function to display the list of hospitals with addresses on the web page
+      function displayHospitalList() {
+        var hospitalList = document.getElementById("hospital-list");
+      
+        // Generate a random list of hospitals with addresses
+        var randomHospitals = generateRandomHospitalList();
+      
+        // Clear any existing content
+        hospitalList.innerHTML = "";
+      
+        // Loop through the hospital data and create HTML elements for each hospital
+        for (var i = 0; i < randomHospitals.length; i++) {
+          var hospital = randomHospitals[i];
+      
+          // Create the HTML elements for hospital name, address, and container
+          var hospitalNameElement = document.createElement("h2");
+          hospitalNameElement.textContent = hospital.name;
+      
+          var hospitalAddressElement = document.createElement("p");
+          hospitalAddressElement.textContent = hospital.address;
+          hospitalAddressElement.classList.add("address");
+      
+          var hospitalContainer = document.createElement("div");
+          hospitalContainer.classList.add("hospital-item");
+      
+          // Append the elements to the hospital container
+          hospitalContainer.appendChild(hospitalNameElement);
+          hospitalContainer.appendChild(hospitalAddressElement);
+      
+          // Append the hospital container to the hospital list
+          hospitalList.appendChild(hospitalContainer);
+        }
+      }
+      
+      // Call the displayHospitalList function to display the list on page load
+      window.onload = function() {
+        displayHospitalList();
+      };</script>
+</body>
+</html>
