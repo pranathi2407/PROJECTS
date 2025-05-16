@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Customer Service Chatbot</title>
+  <style>
+    .chatbox {
+      width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+      border-radius: 5px;
+      margin-top: 100px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .chatbox .messages {
+      height: 200px;
+      overflow-y: scroll;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+
+    .chatbox .input {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <div class="chatbox">
+    <h2>Customer Service</h2>
+    <div class="messages" id="messages"></div>
+    <input type="text" class="input" id="userInput" placeholder="Ask a question..." autofocus>
+  </div>
+
+  <script>
+    // Function to add a new message to the chatbox
+    function addMessage(sender, message) {
+      var messagesDiv = document.getElementById("messages");
+      var newMessage = document.createElement("div");
+      newMessage.innerHTML = "<strong>" + sender + ":</strong> " + message;
+      messagesDiv.appendChild(newMessage);
+    }
+
+    // Function to handle user input and generate chatbot responses
+    function handleUserInput() {
+      var userInput = document.getElementById("userInput").value;
+      addMessage("User", userInput);
+
+      // Chatbot responses based on user input
+      var response;
+      if (userInput.toLowerCase().includes("hi")) {
+        response = "hello there! iam your personal customer care service provider how can i help you?";}
+        else if (userInput.toLowerCase().includes("cant")) {
+        response = "ok i understand your problem plz contact to this number +91 9875641256";}
+     else if (userInput.toLowerCase().includes("appointment")) {
+        response = "To schedule an appointment, please call our office at +91 8462137952";
+      } else if (userInput.toLowerCase().includes("prescription")) {
+        response = "For prescription-related inquiries, please contact your healthcare provider.";
+      } else if (userInput.toLowerCase().includes("insurance")) {
+        response = "For insurance-related questions, please reach out to our billing department.";
+      } else {
+        response = "I'm sorry, I couldn't understand your question. Please contact our support team for assistance.";
+      }
+
+      setTimeout(function() {
+        addMessage("Chatbot", response);
+      }, 500);
+
+      document.getElementById("userInput").value = "";
+    }
+
+    // Event listener for user input
+    document.getElementById("userInput").addEventListener("keydown", function(event) {
+      if (event.keyCode === 13) { // Enter key
+        event.preventDefault();
+        handleUserInput();
+      }
+    });
+  </script>
+</body>
+</html>
