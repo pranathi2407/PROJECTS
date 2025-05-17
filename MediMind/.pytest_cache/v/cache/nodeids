@@ -1,0 +1,4 @@
+[
+  "backend/backend/test_main.py::test_assess_symptoms",
+  "backend/backend/test_main.py::test_read_root"
+]
