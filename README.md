@@ -15,4 +15,5 @@ and follow-ups—anytime, anywhere.
 🧓 Easy to use for all age groups
 
 🎯 Vision
+
 We believe in affordable, accessible, and simple healthcare for everyone. Swastha empowers individuals to take charge of their well-being through a trusted, easy-to-use platform.
