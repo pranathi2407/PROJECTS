@@ -1,5 +1,6 @@
 # PROJECTS
   🩺 Swastha - Your Personal Healthcare Companion
+  
 Swastha is a user-centric healthcare app designed to simplify medical access in today’s fast-paced world. It connects users with healthcare professionals for non-emergency consultations, second opinions, 
 and follow-ups—anytime, anywhere.
 
@@ -26,6 +27,7 @@ We believe in affordable, accessible, and simple healthcare for everyone. Swasth
 
 
 
+🧠 MediMind - Intelligent Health Assessment Assistant
 
 MediMind is an AI-powered healthcare assistant that understands your symptoms, detects emotions, and provides personalized medical advice. It uses advanced NLP to prioritize urgent cases and suggest appropriate care paths.
 
@@ -58,6 +60,7 @@ MediMind aims to bridge the gap between users and healthcare by offering intelli
 This is a simple Bank Management System built using Java to manage basic banking operations like account creation, balance checks, deposits, and withdrawals through a user-friendly console interface.
 
 🚀 Features
+
 🧾 Create and manage user accounts
 
 💰 Deposit and withdraw money
@@ -70,7 +73,7 @@ This is a simple Bank Management System built using Java to manage basic banking
 
 🧑‍💻 Tech Stack
 
-Java · Object-Oriented Programming · File Handling / JDBC (if applicable)
+Java · Object-Oriented Programming · File Handling / JDBC 
 
 🎯 Vision
 
