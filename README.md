@@ -1,5 +1,5 @@
 # PROJECTS
-🩺 Swastha - Your Personal Healthcare Companion
+  🩺 Swastha - Your Personal Healthcare Companion
 Swastha is a user-centric healthcare app designed to simplify medical access in today’s fast-paced world. It connects users with healthcare professionals for non-emergency consultations, second opinions, 
 and follow-ups—anytime, anywhere.
 
