@@ -4,6 +4,7 @@ Swastha is a user-centric healthcare app designed to simplify medical access in 
 and follow-ups—anytime, anywhere.
 
 🚀 Features
+
 📈 Personalized health tracking
 
 📋 Secure electronic health records (EHR)
@@ -29,6 +30,7 @@ We believe in affordable, accessible, and simple healthcare for everyone. Swasth
 MediMind is an AI-powered healthcare assistant that understands your symptoms, detects emotions, and provides personalized medical advice. It uses advanced NLP to prioritize urgent cases and suggest appropriate care paths.
 
 🚀 Features
+
 🤖 Symptom analysis using NLP (NER, emotion detection, intent recognition)
 
 📊 Disease prediction and urgency estimation
@@ -40,5 +42,6 @@ MediMind is an AI-powered healthcare assistant that understands your symptoms, d
 🌐 Accessible via web, mobile, and voice platforms
 
 🎯 Vision
+
 MediMind aims to bridge the gap between users and healthcare by offering intelligent, real-time health insights—making healthcare more proactive and accessible for all.
 
