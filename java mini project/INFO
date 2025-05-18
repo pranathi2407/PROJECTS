@@ -1,0 +1,22 @@
+🏦 Bank Management System (Java)
+
+This is a simple Bank Management System built using Java to manage basic banking operations like account creation, balance checks, deposits, and withdrawals through a user-friendly console interface.
+
+🚀 Features
+🧾 Create and manage user accounts
+
+💰 Deposit and withdraw money
+
+📄 Check account balance and details
+
+🔐 Secure user login system
+
+🧹 Simple menu-driven interface using OOP principles
+
+🧑‍💻 Tech Stack
+
+Java · Object-Oriented Programming · File Handling / JDBC (if applicable)
+
+🎯 Vision
+
+This project aims to demonstrate core Java concepts by simulating basic banking functionalities in an organized, real-world context.
