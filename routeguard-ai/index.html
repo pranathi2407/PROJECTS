@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>RouteGuard AI – Disruption-Aware Route Optimizer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="app">
+    <div class="left">
+      <section class="section">
+        <h1>
+          RouteGuard AI
+          <span class="badge">Prototype – Disruption-Aware Routing</span>
+        </h1>
+
+        <div class="subtitle">
+          Compare alternate routes and choose the path least likely to be hit by strikes, curfews,
+          or high-risk zones before trucks leave the yard.
+        </div>
+
+        <div class="hero-tagline">
+          <span class="label">Live Risk Lens</span>
+          <span class="text">
+            Fuses strike alerts, political events & route profiles into a single risk score.
+          </span>
+        </div>
+
+        <div class="section-header" style="margin-top:8px;">
+          <div class="section-title">
+            <span class="section-title-dot"></span>
+            Shipment & route context
+          </div>
+          <div class="section-tag">Inputs simulated for demo</div>
+        </div>
+
+        <div class="inputs-row">
+          <div>
+            <label for="shipment">Shipment ID</label>
+            <input id="shipment" placeholder="e.g. RG-2026-104" />
+          </div>
+          <div>
+            <label for="priority">Business Priority</label>
+            <select id="priority">
+              <option value="on-time">On-time delivery</option>
+              <option value="cost">Minimize cost</option>
+              <option value="risk" selected>Minimize disruption risk</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="inputs-row">
+          <div>
+            <label for="source">Source city</label>
+            <input id="source" list="cityOptions" placeholder="Enter source city" value="Hyderabad" />
+          </div>
+          <div>
+            <label for="destination">Destination city</label>
+            <input id="destination" list="cityOptions" placeholder="Enter destination city" value="Mumbai" />
+          </div>
+        </div>
+
+        <datalist id="cityOptions">
+          <option value="Hyderabad"></option>
+          <option value="Mumbai"></option>
+          <option value="Delhi"></option>
+          <option value="Bengaluru"></option>
+          <option value="Chennai"></option>
+          <option value="Pune"></option>
+          <option value="Kolkata"></option>
+          <option value="Ahmedabad"></option>
+          <option value="Jaipur"></option>
+          <option value="Lucknow"></option>
+          <option value="Nagpur"></option>
+          <option value="Visakhapatnam"></option>
+          <option value="Bhopal"></option>
+          <option value="Patna"></option>
+          <option value="Indore"></option>
+          <option value="Surat"></option>
+          <option value="Vadodara"></option>
+          <option value="Kanpur"></option>
+          <option value="Noida"></option>
+          <option value="Gurugram"></option>
+          <option value="Faridabad"></option>
+          <option value="Ghaziabad"></option>
+          <option value="Chandigarh"></option>
+          <option value="Ludhiana"></option>
+          <option value="Amritsar"></option>
+          <option value="Jalandhar"></option>
+          <option value="Dehradun"></option>
+          <option value="Varanasi"></option>
+          <option value="Prayagraj"></option>
+          <option value="Ranchi"></option>
+          <option value="Jamshedpur"></option>
+          <option value="Bhubaneswar"></option>
+          <option value="Cuttack"></option>
+          <option value="Raipur"></option>
+          <option value="Bilaspur"></option>
+          <option value="Nashik"></option>
+          <option value="Aurangabad"></option>
+          <option value="Solapur"></option>
+          <option value="Kolhapur"></option>
+          <option value="Mysuru"></option>
+          <option value="Mangaluru"></option>
+          <option value="Hubballi"></option>
+          <option value="Belagavi"></option>
+          <option value="Coimbatore"></option>
+          <option value="Madurai"></option>
+          <option value="Salem"></option>
+          <option value="Tiruchirappalli"></option>
+          <option value="Vijayawada"></option>
+          <option value="Guntur"></option>
+          <option value="Nellore"></option>
+          <option value="Warangal"></option>
+          <option value="Karimnagar"></option>
+          <option value="Nizamabad"></option>
+          <option value="Khammam"></option>
+          <option value="Kochi"></option>
+          <option value="Thiruvananthapuram"></option>
+          <option value="Kozhikode"></option>
+          <option value="Thrissur"></option>
+          <option value="Panaji"></option>
+          <option value="Shimla"></option>
+          <option value="Srinagar"></option>
+          <option value="Jammu"></option>
+          <option value="Udaipur"></option>
+          <option value="Jodhpur"></option>
+          <option value="Kota"></option>
+          <option value="Alwar"></option>
+          <option value="Agra"></option>
+          <option value="Meerut"></option>
+        </datalist>
+
+        <div class="inputs-row-3">
+          <div>
+            <label for="eta">Promised delivery</label>
+            <input id="eta" type="date" />
+          </div>
+          <div>
+            <label for="value">Shipment value (₹)</label>
+            <div class="pill-input">
+              <span>₹</span>
+              <input id="value" type="number" placeholder="e.g. 25000000" />
+            </div>
+          </div>
+          <div>
+            <label for="weight">Weight (tons)</label>
+            <div class="pill-input">
+              <input id="weight" type="number" step="0.1" placeholder="e.g. 18" />
+              <span>t</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="primary" onclick="analyze()">
+          <span>Analyze routes & recommend path</span>
+          <span class="loader"></span>
+        </button>
+
+        <div class="meta-strip">
+          <span><span class="meta-dot"></span> Uses simulated feeds for strikes, elections & curfews.</span>
+          <span>Last refresh: <span id="refreshTime">–</span></span>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="panel">
+          <div class="card-title">
+            Route comparison
+            <span class="tag" id="routeLaneTag">Simulated freight lane</span>
+          </div>
+          <div class="card-subtitle">
+            Side-by-side view of two viable paths with different risk, time and policy trade-offs.
+          </div>
+
+          <div class="map-box">
+            <div class="map-header">
+              <span>Route map (interactive demo)</span>
+              <span class="chip">OpenStreetMap · No billing</span>
+            </div>
+
+            <div class="map-body">
+              <div class="map-city left" id="mapSourceLabel">Source</div>
+              <div class="map-city right" id="mapDestinationLabel">Destination</div>
+
+              <div class="map-route map-route-a">
+                <span class="map-label">Route A – Higher Risk</span>
+              </div>
+              <div class="map-route map-route-b">
+                <span class="map-label">Route B – Safer Route</span>
+              </div>
+            </div>
+
+            <div id="leafletMap"></div>
+
+            <div class="map-note">
+              Red polyline shows the higher-risk corridor; green shows the safer detour. Thickness tracks
+              the recommended route.
+            </div>
+          </div>
+
+          <div class="routes">
+            <div class="route-card" id="routeA"></div>
+            <div class="route-card" id="routeB"></div>
+          </div>
+
+          <div class="recommend" id="recommendation"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="panel">
+          <div class="card-title">
+            Shipment-level risk score
+            <span class="tag">Blends disruption, delay & exposure</span>
+          </div>
+          <div class="card-subtitle">
+            Single view of how exposed this shipment is if routed today, given current events on road corridors.
+          </div>
+
+          <div class="risk-grid">
+            <div class="risk-score-box">
+              <div class="risk-label">
+                <span>Composite risk score</span>
+                <span class="status" id="riskStatus">Moderate exposure</span>
+              </div>
+              <div class="risk-main">
+                <div class="score" id="riskScore">64<span class="unit">/100</span></div>
+                <div class="desc" id="riskDesc">
+                  Mix of urban bottlenecks & moderate strike activity. Manageable with smart routing.
+                </div>
+              </div>
+              <div class="risk-badges">
+                <div class="risk-badge">
+                  <span class="dot"></span> Political / strike sensitivity:
+                  <span id="riskPolitical">Medium</span>
+                </div>
+                <div class="risk-badge">
+                  <span class="dot"></span> Corridor congestion:
+                  <span id="riskCongestion">High</span>
+                </div>
+                <div class="risk-badge">
+                  <span class="dot"></span> Alternate route strength:
+                  <span id="riskAlternate">Strong</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="risk-mini">
+              <div class="risk-mini-card">
+                <div class="risk-mini-title">
+                  Event window sensitivity
+                  <span>Next 5 days</span>
+                </div>
+                <div class="risk-mini-value">
+                  <span id="riskWindow">Election rallies near Pune & Solapur corridor.</span>
+                  <span class="chip">Active</span>
+                </div>
+              </div>
+
+              <div class="risk-mini-card">
+                <div class="risk-mini-title">
+                  Risk vs. on-time trade-off
+                  <span id="riskTradeoffHint">Better to accept +1 hr to avoid closures.</span>
+                </div>
+                <div class="risk-mini-value">
+                  <span id="riskTradeoffScore">Safest route only +45–60 min slower than fastest.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="risk-legend">
+            <span><i class="high"></i> High exposure (consider rescheduling or hard reroute)</span>
+            <span><i class="medium"></i> Medium (reroute or buffer time recommended)</span>
+            <span><i class="low"></i> Low (operate as planned; monitor only)</span>
+          </div>
+
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Corridor</th>
+                  <th>Disruption signal</th>
+                  <th>Probability</th>
+                  <th>Impact</th>
+                  <th>Risk band</th>
+                </tr>
+              </thead>
+              <tbody id="riskTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="right">
+      <section class="section">
+        <div class="panel">
+          <div class="card-title">
+            What RouteGuard would tell your dispatcher
+            <span class="tag">Natural-language explanation</span>
+          </div>
+          <div class="timeline">
+            <div class="timeline-header">
+              <span>AI decision summary</span>
+              <span class="badge" id="aiMode">Mode: Minimize disruption risk</span>
+            </div>
+            <div id="timelineBody"></div>
+          </div>
+          <div class="footer-note">
+            <span>Idea for rollout:</span> start with just a second-opinion panel inside your existing TMS
+            — no need to replace current route engine on day one.
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
